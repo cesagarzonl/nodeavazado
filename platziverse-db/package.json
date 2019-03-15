@@ -1,0 +1,22 @@
+{
+  "name": "platziverse-db",
+  "version": "1.0.0",
+  "description": "A Simple Iot plataform -DB module",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesagarzonl/nodeavazado.git"
+  },
+  "author": "MIT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cesagarzonl/nodeavazado/issues"
+  },
+  "homepage": "https://github.com/cesagarzonl/nodeavazado#readme",
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
