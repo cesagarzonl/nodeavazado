@@ -4,7 +4,9 @@
   "description": "A Simple Iot plataform -DB module",
   "main": "index.js",
   "scripts": {
-    "lint": "standard"
+    "lint": "standard",
+    "setup": "DEBUG=platziverse:* node setup.js",
+    "test": "DEBUG=platziverse:* ava tests/ --verbose"
   },
   "repository": {
     "type": "git",
@@ -17,9 +19,14 @@
   },
   "homepage": "https://github.com/cesagarzonl/nodeavazado#readme",
   "devDependencies": {
+    "ava": "^1.3.1",
     "standard": "^12.0.1"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
+    "debug": "^4.1.1",
+    "defaults": "^1.0.3",
+    "inquirer": "^6.2.2",
     "pg": "^7.9.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.1.0"
