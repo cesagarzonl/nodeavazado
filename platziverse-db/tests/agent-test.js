@@ -17,33 +17,32 @@ let single = Object.assign({}, agentFixtures.single)
 let AgentStub = null
 let db = null
 let sandbox = null
-let uuidArgs= {
-	where:{
-		uuid
-	}
+let uuidArgs = {
+  where: {
+    uuid
+  }
 }
 
 test.beforeEach(async () => {
   sandbox = sinon.sandbox.create()
 
   AgentStub = {
-  	hasMany: sandbox.spy()
+    hasMany: sandbox.spy()
   }
 
-	// model find One stub
-	AgentStub.findOne= sandbox.stub()
-    AgentStub.findOne.withArgs(uuidArgs).returns(Promise.resolve(agentFixtures.byUuid(uuid)))
-  //model findby id stub
+  // model find One stub
+  AgentStub.findOne = sandbox.stub()
+  AgentStub.findOne.withArgs(uuidArgs).returns(Promise.resolve(agentFixtures.byUuid(uuid)))
+  // model findby id stub
   AgentStub.findById = sandbox.stub()
   AgentStub.findById.withArgs(id).returns(Promise.resolve(agentFixtures.byId(id)))
-// model update stub
-	AgentStub.update = sandbox.stub()
-	AgentStub.update.withArgs(single, uuidArgs).returns(Promise.resolve(single))
-
+  // model update stub
+  AgentStub.update = sandbox.stub()
+  AgentStub.update.withArgs(single, uuidArgs).returns(Promise.resolve(single))
 
   const setupDatabase = proxyquire('../', {
-  	'./models/agente': () => AgentStub,
-  	'./models/metric': () => MetricStub
+    './models/agente': () => AgentStub,
+    './models/metric': () => MetricStub
   })
   db = await setupDatabase(config)
 })
@@ -66,10 +65,10 @@ test.serial('Agent#findByID', async t => {
   t.deepEqual(agent, agentFixtures.byId(id), 'should be the same')
 })
 
-test.serial('Agent#createORUpdate - existe',async t=>{
-	let agent= await db.Agent.createOrUpdate(single)
-	t.true(AgentStub.findOne.called, 'find one should be callled on model')
-	t.true(AgentStub.findOne.calledTwice,'finOne shoud be called twice')
-	t.true(AgentStub.update.calledOnce,'finOne shoud be called twice')
-	t.deepEqual(agent, single, 'agent should be the same')
+test.serial('Agent#createORUpdate - existe', async t => {
+  let agent = await db.Agent.createOrUpdate(single)
+  t.true(AgentStub.findOne.called, 'find one should be callled on model')
+  t.true(AgentStub.findOne.calledTwice, 'finOne shoud be called twice')
+  t.true(AgentStub.update.calledOnce, 'finOne shoud be called twice')
+  t.deepEqual(agent, single, 'agent should be the same')
 })
