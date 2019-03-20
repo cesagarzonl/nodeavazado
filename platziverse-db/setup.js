@@ -4,13 +4,13 @@ const chalk = require('chalk')
 const debug = require('debug')('platziverse:db:setup')
 const db = require('./')
 
-  const prompt = inquirer.createPromptModule()
+const prompt = inquirer.createPromptModule()
 
 async function setup () {
   const answer = await prompt([{
-    type:'confirm',
-    name:'setup',
-    message:'this will destroy you database, are you sure? '
+    type: 'confirm',
+    name: 'setup',
+    message: 'this will destroy you database, are you sure? '
   }])
 
   if (!answer.setup) {
